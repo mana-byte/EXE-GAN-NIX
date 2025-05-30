@@ -29,9 +29,10 @@ and we encourage you to check out their projects as well:
 - [PATMAT](https://arxiv.org/abs/2304.06107), [codes](https://github.com/humansensinglab/PATMAT) (released at Wed, 12 Apr 2023, ICCV 2023)
 
 ## Requirements 
+Must have nix installed.
 ```
 cd EXE-GAN project
-pip install -r requirements.txt
+nix develop
 ```
 - Note that other versions of PyTorch (e.g., higher than 1.7) also work well, but you have to install the corresponding CUDA version. 
 
