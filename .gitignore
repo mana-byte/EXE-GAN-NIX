@@ -1,3 +1,6 @@
 __pycache__/
 checkpoint/
 pre-train/
+recover_out
+imgs
+video.mp4

@@ -238,12 +238,14 @@ if __name__ == "__main__":
         output_video = cv2.VideoWriter(
             args.video_output,
             cv2.VideoWriter_fourcc(*"mp4v"),
-            30,
+            30,  # fps
             (args.size, args.size),
         )
 
     for i in tqdm(range(len(gt_imgs))):
-        exe_img_ = load_img2tensor(exe_imgs[0], args.size).to(device)
+        exe_img_ = load_img2tensor(exe_imgs[0], args.size).to(
+            device
+        )  # change to i if one example for each image
         gt_img_ = load_img2tensor(gt_imgs[i], args.size).to(device)
         mask_ = load_mask2tensor(mask_imgs[i], args.size).to(device)
 
