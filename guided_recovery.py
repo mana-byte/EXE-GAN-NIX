@@ -275,5 +275,15 @@ if __name__ == "__main__":
                 frame = (frame * 255).astype("uint8")
                 frame = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
                 output_video.write(frame)
+                # display frames
+                # cv2.namedWindow(f"Frame {i}_{jj}", cv2.WINDOW_NORMAL)
+                # cv2.imshow(
+                #     f"Frame {i}_{jj}",
+                #     frame,
+                # )
+                # if cv2.waitKey(1) & 0xFF == ord("q"):
+                #     cv2.destroyAllWindows()
+                #     break
     if args.video_output != "":
         output_video.release()
+        # cv2.destroyAllWindows()
