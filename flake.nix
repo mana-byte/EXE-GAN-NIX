@@ -13,14 +13,12 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
-    poetry2nix.url = "github:nix-community/poetry2nix";
   };
 
   outputs = {
     self,
     nixpkgs,
     flake-utils,
-    poetry2nix,
     ...
   }:
     flake-utils.lib.eachDefaultSystem (
@@ -29,11 +27,10 @@
           inherit system;
           config = {
             allowUnfree = true;
-            cudaSupport = true;
+            # cudaSupport = true;
           };
         };
         python = pkgs.python312;
-        requirements = builtins.readFile ./requirements.txt;
         pythonEnv = python.withPackages (ps:
           with ps; [
             pip
@@ -85,16 +82,19 @@
             sympy
             threadpoolctl
             tifffile
-            torch
-            torchaudio
-            torchvision
+
+            torch-bin
+            torchvision-bin
+
             tqdm
             traitlets
             typing-extensions
             urllib3
             wcwidth
             zipp
-            triton
+            # triton
+
+            ninja
           ]);
       in {
         devShells.default = pkgs.mkShell {
@@ -103,10 +103,12 @@
             black
             pythonEnv
 
+            # For CUDA support if you already have it remove these two lines
             cudaPackages.cudatoolkit
             cudaPackages.cudnn
+
             pkg-config
-            ffmpeg
+            # ffmpeg
 
             gtk2.dev
             libGL.dev
