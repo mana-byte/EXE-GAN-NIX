@@ -32,7 +32,13 @@ and we encourage you to check out their projects as well:
 Must have nix installed.
 ```
 cd EXE-GAN project
-nix develop
+
+nix develop # Install it the nix way
+
+# OR
+
+pip install -r requirements.txt # Install it the python way. If you use this you will need to install the CUDA drivers by yourself
+
 ```
 - Note that other versions of PyTorch (e.g., higher than 1.7) also work well, but you have to install the corresponding CUDA version. 
 
@@ -96,65 +102,21 @@ root/
 
 
 
-## Exemplar-guided facial image recovery 
+## Exemplar-guided facial image recovery => This is used together with [VR HEADSET FILTER](https://github.com/mana-byte/VR-Headset-filter)
 #### Notice 
 - For editing images from the web, photos should be aligned by face landmarks and cropped to 256x256 by [align_face](https://github.com/ZPdesu/Barbershop/blob/main/align_face.py).
 
 (use our FFHQ_60k pre-trained model [EXE_GAN_model.pt](https://drive.google.com/file/d/1y7ThKBXL7QK7CPtvT3KICeNOu1T2xlCA/view?usp=drive_link) or trained *pt file by yourself.)
 > python guided_recovery.py --psp_checkpoint_path ./pre-train/psp_ffhq_encode.pt
---ckpt  ./checkpoint/EXE_GAN_model.pt  --masked_dir ./imgs/exe_guided_recovery/mask --gt_dir ./imgs/exe_guided_recovery/target --exemplar_dir ./imgs/exe_guided_recovery/exemplar --sample_times 10
+--ckpt  ./checkpoint/EXE_GAN_model.pt  --masked_dir ./imgs/exe_guided_recovery/mask --gt_dir ./imgs/exe_guided_recovery/target --exemplar_dir ./imgs/exe_guided_recovery/exemplar --sample_times 1 --video_output ./output.mp4
 > --eval_dir ./recover_out  
 ```
 - masked_dir: mask input folder
 - gt_dir: the input gt_dir, used for  editing 
 - exemplar_dir: exemplar_dir, the exemplar dir, for guiding the editing
 - eval_dir: output dir
+- video_output: video output dir
 ```
-| <img src="./imgs/exe_guided_recovery/target/1_real.png"  height=180 width=180 alt="Ground-truth"> | <img src="./imgs/exe_guided_recovery/mask/1_mask.png" width=180 height=180 alt="Masked "> | <img src="./imgs/exe_guided_recovery/exemplar/1_exe.png" height=180 width=180 alt=" "> |<img src="./imgs/exe_guided_recovery/recover_out/1_inpaint.png" height=180 width=180 alt=" "> |
-| :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |:----------------------------------------------------------: |
-| <img src="./imgs/exe_guided_recovery/target/2_real.png"  height=180 width=180 alt="Ground-truth"> | <img src="./imgs/exe_guided_recovery/mask/2_mask.png" width=180 height=180 alt="Masked "> | <img src="./imgs/exe_guided_recovery/exemplar/2_exe.png" height=180 width=180 alt=" "> |<img src="./imgs/exe_guided_recovery/recover_out/2_inpaint.png" height=180 width=180 alt=" "> |
-| <img src="./imgs/exe_guided_recovery/target/3_real.png"  height=180 width=180 alt="Ground-truth"> | <img src="./imgs/exe_guided_recovery/mask/3_mask.png" width=180 height=180 alt="Masked "> | <img src="./imgs/exe_guided_recovery/exemplar/3_exe.png" height=180 width=180 alt=" "> |<img src="./imgs/exe_guided_recovery/recover_out/3_inpaint.png" height=180 width=180 alt=" "> |
-| <img src="./imgs/exe_guided_recovery/target/4_real.png"  height=180 width=180 alt="Ground-truth"> | <img src="./imgs/exe_guided_recovery/mask/4_mask.png" width=180 height=180 alt="Masked "> | <img src="./imgs/exe_guided_recovery/exemplar/4_exe.png" height=180 width=180 alt=" "> |<img src="./imgs/exe_guided_recovery/recover_out/4_inpaint.png" height=180 width=180 alt=" "> |
-|          Ground-truth                        |                      Mask                               | Exemplar       | Inpainted  | 
-
-- Inherent diversity, set ``--sample_times 10``  higher to get more diverse results.
-
-| <img src="./imgs/exe_guided_recovery/diversity/1_0_inpaint.png"  height=180 width=180 alt="Ground-truth"> | <img src="./imgs/exe_guided_recovery/diversity/1_1_inpaint.png" width=180 height=180 alt="Masked "> | <img src="./imgs/exe_guided_recovery/diversity/1_2_inpaint.png" height=180 width=180 alt=" "> |<img src="./imgs/exe_guided_recovery/diversity/1_3_inpaint.png" height=180 width=180 alt=" "> |
-| :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |:----------------------------------------------------------: |
-|          diversity 1                       |                      diversity 2                               | diversity 3       | diversity 4  | 
-
-
-
-## Exemplar guided style mixing 
-#### Notice 
-- For editing images from the web, photos should be aligned by face landmarks and cropped to 256x256 by [align_face](https://github.com/ZPdesu/Barbershop/blob/main/align_face.py).
-
-(use our FFHQ_60k pre-trained model [EXE_GAN_model.pt](https://drive.google.com/file/d/1y7ThKBXL7QK7CPtvT3KICeNOu1T2xlCA/view?usp=drive_link) or trained *pt file by yourself.)
-> python exemplar_style_mixing.py --psp_checkpoint_path ./pre-train/psp_ffhq_encode.pt
---ckpt  ./checkpoint/EXE_GAN_model.pt  --masked_dir ./imgs/exe_guided_recovery/mask --gt_dir ./imgs/exe_guided_recovery/target --exemplar_dir ./imgs/exe_guided_recovery/exemplar --sample_times 2
-> --eval_dir mixing_out  
-
-```
-- masked_dir: mask input folder
-- gt_dir: the input gt_dir, used for  editing 
-- exemplar_dir: exemplar_dir, the exemplar dir, for guiding the editing
-- eval_dir: output dir
-- size 256 for 256X256 images and  512 for  512X512 images
-```
-- Inputs are shown below:
-
-| <img src="./imgs/exe_guided_recovery/style_mixing/1_real.png"  height=180 width=180 alt="Ground-truth"> | <img src="./imgs/exe_guided_recovery/style_mixing/1_mask.png" width=180 height=180 alt="Masked "> | <img src="./imgs/exe_guided_recovery/style_mixing/1_exe1.png" height=180 width=180 alt=" "> |<img src="./imgs/exe_guided_recovery/style_mixing/1_exe2.png" height=180 width=180 alt=" "> |
-| :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |:----------------------------------------------------------: |
-|         Ground-truth                      |                      Mask                              | Exemplar 1       | Exemplar 2  | 
-
-- Style mixing results
-
-| <img src="./imgs/exe_guided_recovery/mixing_out/1_0_0_inpaint2.png"  height=180 width=180 alt="Ground-truth"> | <img src="./imgs/exe_guided_recovery/mixing_out/1_1_0_inpaint2.png" width=180 height=180 alt="Masked "> | <img src="./imgs/exe_guided_recovery/mixing_out/1_2_0_inpaint2.png" height=180 width=180 alt=" "> |<img src="./imgs/exe_guided_recovery/mixing_out/1_3_0_inpaint2.png" height=180 width=180 alt=" "> |
-| :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |:----------------------------------------------------------: |
-| <img src="./imgs/exe_guided_recovery/mixing_out/1_4_0_inpaint2.png"  height=180 width=180 alt="Ground-truth"> | <img src="./imgs/exe_guided_recovery/mixing_out/1_5_0_inpaint2.png" width=180 height=180 alt="Masked "> | <img src="./imgs/exe_guided_recovery/mixing_out/1_6_0_inpaint2.png" height=180 width=180 alt=" "> |<img src="./imgs/exe_guided_recovery/mixing_out/1_7_0_inpaint2.png" height=180 width=180 alt=" "> |
-| <img src="./imgs/exe_guided_recovery/mixing_out/1_0_0_inpaint.png"  height=180 width=180 alt="Ground-truth"> | <img src="./imgs/exe_guided_recovery/mixing_out/1_1_0_inpaint.png" width=180 height=180 alt="Masked "> | <img src="./imgs/exe_guided_recovery/mixing_out/1_2_0_inpaint.png" height=180 width=180 alt=" "> |<img src="./imgs/exe_guided_recovery/mixing_out/1_3_0_inpaint.png" height=180 width=180 alt=" "> |
-| <img src="./imgs/exe_guided_recovery/mixing_out/1_4_0_inpaint.png"  height=180 width=180 alt="Ground-truth"> | <img src="./imgs/exe_guided_recovery/mixing_out/1_5_0_inpaint.png" width=180 height=180 alt="Masked "> | <img src="./imgs/exe_guided_recovery/mixing_out/1_6_0_inpaint.png" height=180 width=180 alt=" "> |<img src="./imgs/exe_guided_recovery/mixing_out/1_7_0_inpaint.png" height=180 width=180 alt=" "> |
-
 
 ## Editing masks by yourself 
 ![gen_mask](./imgs/Mask_gen.gif)
