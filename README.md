@@ -16,15 +16,17 @@ approach can not only preserve the quality of the input facial image but also co
 ![Performance](./imgs/teaser.png)
 
 
-**NOTE**: This repo only uses a slightly modified version of the guided recovery. If you want all the other feature please checkout the original repo
+**NOTE**: This repo only uses a slightly modified version of the guided recovery. If you want all the other features please checkout the original repo
 
 | Result (Not Real) | Real Image | Mask |
 |-------------------|------------|------|
 | [![Watch the video](https://raw.githubusercontent.com/mana-byte/EXE-GAN-NIX/main/example_result/Talking_example/recover_out/1_0_inpaint.png)](https://raw.githubusercontent.com/mana-byte/EXE-GAN-NIX/main/output.mp4) | <img width="256" height="256" alt="Real Image" src="https://github.com/user-attachments/assets/0849bab1-3afc-4fa2-9c7c-fc6f1e1e0c46" /> | <img width="256" height="256" alt="Mask" src="https://github.com/user-attachments/assets/1d36ca78-3544-4b4e-80c7-ba792ae502da" /> |
 
 
-## Requirements 
-Must have nix installed.
+## Installation 
+
+** YOU MUST HAVE CUDA INSTALLED **
+
 ```
 cd EXE-GAN project
 
@@ -37,12 +39,8 @@ pip install -r requirements.txt # Install it the python way. If you use this you
 ```
 - Note that other versions of PyTorch (e.g., higher than 1.7) also work well, but you have to install the corresponding CUDA version. 
 
-##### What we have released
-- [x] Training and testing codes
-- [x] Pre-trained models
 
-
-## Exemplar-guided facial image recovery: This is used together with [VR HEADSET FILTER](https://github.com/mana-byte/VR-Headset-filter)
+## Exemplar-guided facial image recovery
 #### Notice 
 - For editing images from the web, photos should be aligned by face landmarks and cropped to 256x256 by [align_face](https://github.com/ZPdesu/Barbershop/blob/main/align_face.py).
 
@@ -60,7 +58,7 @@ python guided_recovery.py --psp_checkpoint_path ./pre-train/psp_ffhq_encode.pt -
 
 ---
 
-## Use this with [VR HEADSET FILTER](https://github.com/mana-byte/VR-Headset-filter)
+## Use Guided facial image recovery with [VR HEADSET FILTER](https://github.com/mana-byte/VR-Headset-filter)
 
 1. Install the two projects
 2. Use in the VR HEADSET FILTER
