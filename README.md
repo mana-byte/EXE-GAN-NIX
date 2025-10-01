@@ -25,7 +25,8 @@ approach can not only preserve the quality of the input facial image but also co
 
 ## Installation 
 
-** YOU MUST HAVE CUDA INSTALLED **
+**YOU MUST HAVE CUDA INSTALLED**
+**NOTE:** This project dependencies do not depend on me ([mana-byte](https://github.com/mana-byte)). If requirements.txt doesn't work you should checkout the original repo for troubleshooting. Using Nix in this case ensures that the project works on any machine as long as [Nix](https://nixos.org/) is installed (if the machine can support CUDA).
 
 ```
 cd EXE-GAN project
