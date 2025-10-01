@@ -22,17 +22,6 @@ approach can not only preserve the quality of the input facial image but also co
 |-------------------|------------|------|
 | [![Watch the video](https://raw.githubusercontent.com/mana-byte/EXE-GAN-NIX/main/example_result/Talking_example/recover_out/1_0_inpaint.png)](https://raw.githubusercontent.com/mana-byte/EXE-GAN-NIX/main/output.mp4) | <img width="256" height="256" alt="Real Image" src="https://github.com/user-attachments/assets/0849bab1-3afc-4fa2-9c7c-fc6f1e1e0c46" /> | <img width="256" height="256" alt="Mask" src="https://github.com/user-attachments/assets/1d36ca78-3544-4b4e-80c7-ba792ae502da" /> |
 
-## Notice
-Our paper has been published in a Neurocomputing Journal!!!  (28 Nov. 2024). 
-This paper has been going through a three-year review process!!
-
-Our paper was first released on Sun, 13 Feb 2022. 
-We are thankful for the community's recognition and attention to our project.
-We also recognized that there have been some great papers published after ours,
-and we encourage you to check out their projects as well:
-- [Paint by Example](https://arxiv.org/abs/2211.13227), [codes](https://github.com/Fantasy-Studio/Paint-by-Example) (released at Wed, 23 Nov 2022, CVPR 2023)
-- [Reference-Guided Face Inpainting](https://arxiv.org/abs/2303.07014), [codes](https://github.com/wuyangluo/reffaceinpainting) (released at Mon, 13 Mar 2023, TCSVT 2023)
-- [PATMAT](https://arxiv.org/abs/2304.06107), [codes](https://github.com/humansensinglab/PATMAT) (released at Wed, 12 Apr 2023, ICCV 2023)
 
 ## Requirements 
 Must have nix installed.
@@ -90,53 +79,3 @@ python guided_recovery.py --psp_checkpoint_path ./pre-train/psp_ffhq_encode.pt -
 ```
 
 7. Watch the output video ./output.mp4
-
----
-
-## Editing masks by yourself 
-![gen_mask](./imgs/Mask_gen.gif)
-
-We also uploaded the mask editing tool. 
-You can try this tool to generate your masks for editing.
-> python mask_gui.py
-
-
-## Bibtex
-- If you find our code useful, please cite our paper:
-  ```
-  @article{LU2025128996,
-    title = {Do inpainting yourself: Generative facial inpainting guided by exemplars},
-    journal = {Neurocomputing},
-    volume = {617},
-    pages = {128996},
-    year = {2025},
-    issn = {0925-2312},
-    doi = {https://doi.org/10.1016/j.neucom.2024.128996},
-    url = {https://www.sciencedirect.com/science/article/pii/S0925231224017673},
-    author = {Wanglong Lu and Hanli Zhao and Xianta Jiang and Xiaogang Jin and Yong-Liang Yang and Kaijie Shi},
-    keywords = {Generative adversarial networks, Image generation, Image inpainting, Facial image inpainting},
-    }
-  
-  @ARTICLE{FACEMUG,
-    author={Lu, Wanglong and Wang, Jikai and Jin, Xiaogang and Jiang, Xianta and Zhao, Hanli},
-    journal={IEEE Transactions on Visualization and Computer Graphics}, 
-    title={FACEMUG: A Multimodal Generative and Fusion Framework for Local Facial Editing}, 
-    year={2024},
-    volume={},
-    number={},
-    pages={1-15},
-    keywords={Facial features;Semantics;Codes;Generators;Image synthesis;Faces;Image color analysis;Generative adversarial networks;image-toimage translation;multimodal fusion;image editing;facial editing},
-    doi={10.1109/TVCG.2024.3434386}}
-  ```
-
-## Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=LonglongaaaGo/EXE-GAN&type=Date)](https://star-history.com/#LonglongaaaGo/EXE-GAN&Date)
-
-## Acknowledgements
-
-Model details and custom CUDA kernel codes are from official repositories: https://github.com/NVlabs/stylegan2
-
-Codes for Learned Perceptual Image Patch Similarity, LPIPS came from https://github.com/richzhang/PerceptualSimilarity
-
-To match FID scores more closely to tensorflow official implementations, I have used FID Inception V3 implementations in https://github.com/mseitzer/pytorch-fid
