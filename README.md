@@ -16,7 +16,7 @@ approach can not only preserve the quality of the input facial image but also co
 ![Performance](./imgs/teaser.png)
 
 
-**NOTE**: This repo only uses the guided recovery. If you want all the other feature please checkout the original repo
+**NOTE**: This repo only uses a slightly modified version of the guided recovery. If you want all the other feature please checkout the original repo
 
 ## Notice
 Our paper has been published in a Neurocomputing Journal!!!  (28 Nov. 2024). 
@@ -49,21 +49,44 @@ pip install -r requirements.txt # Install it the python way. If you use this you
 - [x] Pre-trained models
 
 
-## Exemplar-guided facial image recovery => This is used together with [VR HEADSET FILTER](https://github.com/mana-byte/VR-Headset-filter)
+## Exemplar-guided facial image recovery: This is used together with [VR HEADSET FILTER](https://github.com/mana-byte/VR-Headset-filter)
 #### Notice 
 - For editing images from the web, photos should be aligned by face landmarks and cropped to 256x256 by [align_face](https://github.com/ZPdesu/Barbershop/blob/main/align_face.py).
 
 (use our FFHQ_60k pre-trained model [EXE_GAN_model.pt](https://drive.google.com/file/d/1y7ThKBXL7QK7CPtvT3KICeNOu1T2xlCA/view?usp=drive_link) or trained *pt file by yourself.)
-> python guided_recovery.py --psp_checkpoint_path ./pre-train/psp_ffhq_encode.pt
+
+```bash
+python guided_recovery.py --psp_checkpoint_path ./pre-train/psp_ffhq_encode.pt
 --ckpt  ./checkpoint/EXE_GAN_model.pt  --masked_dir ./imgs/exe_guided_recovery/mask --gt_dir ./imgs/exe_guided_recovery/target --exemplar_dir ./imgs/exe_guided_recovery/exemplar --sample_times 1 --video_output ./output.mp4
-> --eval_dir ./recover_out  
+ --eval_dir ./recover_out  
 ```
+
 - masked_dir: mask input folder
 - gt_dir: the input gt_dir, used for  editing 
 - exemplar_dir: exemplar_dir, the exemplar dir, for guiding the editing
 - eval_dir: output dir
 - video_output: video output dir
+
+### Use this with [VR HEADSET FILTER](https://github.com/mana-byte/VR-Headset-filter)
+
+1. Install the two projects
+2. Use in the VR HEADSET FILTER
+
+```bash
+python main.py --action frames --source_video ./video/test.mp4 # With the video you want
 ```
+3. Gather all the frames from **video_frames/mask** and **video_frames/target** and move them into **imgs/exe_guided_recovery/mask** and **imgs/exe_guided_recovery/target**
+4. Take a selfie/photo of the person's face that is present in the video and use [align_face](https://github.com/ZPdesu/Barbershop/blob/main/align_face.py) to align your face correctly
+5. Place the aligned face into **imgs/exe_guided_recovery/examplar** and name it **1_exe.png**
+
+6. Finally use in the EXE-GAN:
+
+```bash
+python guided_recovery.py --psp_checkpoint_path ./pre-train/psp_ffhq_encode.pt
+--ckpt  ./checkpoint/EXE_GAN_model.pt  --masked_dir ./imgs/exe_guided_recovery/mask --gt_dir ./imgs/exe_guided_recovery/target --exemplar_dir ./imgs/exe_guided_recovery/exemplar --sample_times 1 --video_output ./output.mp4
+ --eval_dir ./recover_out  
+```
+
 
 ## Editing masks by yourself 
 ![gen_mask](./imgs/Mask_gen.gif)
