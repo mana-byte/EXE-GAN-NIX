@@ -18,7 +18,9 @@ approach can not only preserve the quality of the input facial image but also co
 
 **NOTE**: This repo only uses a slightly modified version of the guided recovery. If you want all the other feature please checkout the original repo
 
-[![Watch the video](https://raw.githubusercontent.com/mana-byte/EXE-GAN-NIX/main/example_result/Talking_example/recover_out/1_0_inpaint.png)](https://raw.githubusercontent.com/mana-byte/EXE-GAN-NIX/main/output.mp4) <img width="256" height="256" alt="1_real" src="https://github.com/user-attachments/assets/0849bab1-3afc-4fa2-9c7c-fc6f1e1e0c46" /> <img width="256" height="256" alt="1_mask" src="https://github.com/user-attachments/assets/1d36ca78-3544-4b4e-80c7-ba792ae502da" />
+| [![Watch the video](https://raw.githubusercontent.com/mana-byte/EXE-GAN-NIX/main/example_result/Talking_example/recover_out/1_0_inpaint.png)](https://raw.githubusercontent.com/mana-byte/EXE-GAN-NIX/main/output.mp4) | <img width="256" height="256" alt="1_real" src="https://github.com/user-attachments/assets/0849bab1-3afc-4fa2-9c7c-fc6f1e1e0c46" /> | <img width="256" height="256" alt="1_mask" src="https://github.com/user-attachments/assets/1d36ca78-3544-4b4e-80c7-ba792ae502da" /> |
+| --- | --- |
+| Result (not real) | Real Image | Mask |
 
 ## Notice
 Our paper has been published in a Neurocomputing Journal!!!  (28 Nov. 2024). 
