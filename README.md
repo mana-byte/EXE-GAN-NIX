@@ -18,6 +18,8 @@ approach can not only preserve the quality of the input facial image but also co
 
 **NOTE**: This repo only uses a slightly modified version of the guided recovery. If you want all the other feature please checkout the original repo
 
+https://github.com/user-attachments/assets/e23963f6-0641-42d0-84ba-db66a0d8449c
+
 ## Notice
 Our paper has been published in a Neurocomputing Journal!!!  (28 Nov. 2024). 
 This paper has been going through a three-year review process!!
