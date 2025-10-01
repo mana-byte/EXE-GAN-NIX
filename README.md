@@ -58,9 +58,7 @@ pip install -r requirements.txt # Install it the python way. If you use this you
 (use our FFHQ_60k pre-trained model [EXE_GAN_model.pt](https://drive.google.com/file/d/1y7ThKBXL7QK7CPtvT3KICeNOu1T2xlCA/view?usp=drive_link) or trained *pt file by yourself.)
 
 ```bash
-python guided_recovery.py --psp_checkpoint_path ./pre-train/psp_ffhq_encode.pt
---ckpt  ./checkpoint/EXE_GAN_model.pt  --masked_dir ./imgs/exe_guided_recovery/mask --gt_dir ./imgs/exe_guided_recovery/target --exemplar_dir ./imgs/exe_guided_recovery/exemplar --sample_times 1 --video_output ./output.mp4
- --eval_dir ./recover_out  
+python guided_recovery.py --psp_checkpoint_path ./pre-train/psp_ffhq_encode.pt --ckpt  ./checkpoint/EXE_GAN_model.pt  --masked_dir ./imgs/exe_guided_recovery/mask --gt_dir ./imgs/exe_guided_recovery/target --exemplar_dir ./imgs/exe_guided_recovery/exemplar --sample_times 1 --video_output ./output.mp4 --eval_dir ./recover_out  
 ```
 
 - masked_dir: mask input folder
@@ -69,7 +67,9 @@ python guided_recovery.py --psp_checkpoint_path ./pre-train/psp_ffhq_encode.pt
 - eval_dir: output dir
 - video_output: video output dir
 
-### Use this with [VR HEADSET FILTER](https://github.com/mana-byte/VR-Headset-filter)
+---
+
+## Use this with [VR HEADSET FILTER](https://github.com/mana-byte/VR-Headset-filter)
 
 1. Install the two projects
 2. Use in the VR HEADSET FILTER
@@ -81,14 +81,15 @@ python main.py --action frames --source_video ./video/test.mp4 # With the video 
 4. Take a selfie/photo of the person's face that is present in the video and use [align_face](https://github.com/ZPdesu/Barbershop/blob/main/align_face.py) to align your face correctly
 5. Place the aligned face into **imgs/exe_guided_recovery/examplar** and name it **1_exe.png**
 
-6. Finally use in the EXE-GAN:
+6. Finally use in the EXE-GAN (Don't forget to install this project weight [EXE_GAN_model.pt](https://drive.google.com/file/d/1y7ThKBXL7QK7CPtvT3KICeNOu1T2xlCA/view?usp=drive_link)): 
 
 ```bash
-python guided_recovery.py --psp_checkpoint_path ./pre-train/psp_ffhq_encode.pt
---ckpt  ./checkpoint/EXE_GAN_model.pt  --masked_dir ./imgs/exe_guided_recovery/mask --gt_dir ./imgs/exe_guided_recovery/target --exemplar_dir ./imgs/exe_guided_recovery/exemplar --sample_times 1 --video_output ./output.mp4
- --eval_dir ./recover_out  
+python guided_recovery.py --psp_checkpoint_path ./pre-train/psp_ffhq_encode.pt --ckpt  ./checkpoint/EXE_GAN_model.pt  --masked_dir ./imgs/exe_guided_recovery/mask --gt_dir ./imgs/exe_guided_recovery/target --exemplar_dir ./imgs/exe_guided_recovery/exemplar --sample_times 1 --video_output ./output.mp4 --eval_dir ./recover_out  
 ```
 
+7. Watch the output video ./output.mp4
+
+---
 
 ## Editing masks by yourself 
 ![gen_mask](./imgs/Mask_gen.gif)
