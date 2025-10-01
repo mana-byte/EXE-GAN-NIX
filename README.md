@@ -16,6 +16,8 @@ approach can not only preserve the quality of the input facial image but also co
 ![Performance](./imgs/teaser.png)
 
 
+**NOTE**: This repo only uses the guided recovery. If you want all the other feature please checkout the original repo
+
 ## Notice
 Our paper has been published in a Neurocomputing Journal!!!  (28 Nov. 2024). 
 This paper has been going through a three-year review process!!
@@ -45,61 +47,6 @@ pip install -r requirements.txt # Install it the python way. If you use this you
 ##### What we have released
 - [x] Training and testing codes
 - [x] Pre-trained models
-
-## Training
-- Prepare your dataset (download [FFHQ](https://github.com/NVlabs/ffhq-dataset), and [CelebA-HQ](https://github.com/tkarras/progressive_growing_of_gans))
-- The folder structure of training and testing data is shown below:  
-```
-root/
-    test/
-        xxx.png
-        ...
-        xxz.png
-    train/
-        xxx.png
-        ...
-        xxz.png
-```
-- Prepare pre-trained checkpoints:
-[Arcface.pth](https://drive.google.com/file/d/18w_YKb0cLX6LAdY4008vEgCPD-_3RmRE/view?usp=drive_link) and 
-[psp_ffhq_encode.pt](https://drive.google.com/file/d/1_GdbsT1A5dyxF0FqOEiFlmouVsyf7Ag1/view?usp=drive_link) (put models in ./pre-train)
-
-
-- Training for 256X256 images
-> python train.py --path /root/train --test_path /root/test
---size 256 --embedding_weight 0.1 --id_loss_weight 0.1 --percept_loss_weight 0.5 --arcface_path ./pre-train/Arcface.pth
---psp_checkpoint_path ./pre-train/psp_ffhq_encode.pt
-
-- Training for 512X512 images using larger masks
-> python train_largeMask.py --path /root/train --test_path /root/test
---size 256 --embedding_weight 0.1 --id_loss_weight 0.1 --percept_loss_weight 0.5 --arcface_path ./pre-train/Arcface.pth
---psp_checkpoint_path ./pre-train/psp_ffhq_encode.pt
-
-- We found that the previous mask configuration for training 256X256 images is not appropriate for training 512X512 images.
-- So we use co-mod gan mask for training, which is plugged in the train_largeMask.py 
-
-
-## Testing 
-#### Notice 
-- For editing images from the web, photos should be aligned by face landmarks and cropped to 256x256 by [align_face](https://github.com/ZPdesu/Barbershop/blob/main/align_face.py).
-
-- [Irregular masks](https://nv-adlr.github.io/publication/partialconv-inpainting) (optional, if you would like to test on irregular masks, download Testing Set masks)
-- (use our FFHQ_60k pre-trained model [EXE_GAN_model_256.pt](https://drive.google.com/file/d/1y7ThKBXL7QK7CPtvT3KICeNOu1T2xlCA/view?usp=drive_link) and [EXE_GAN_model_512.pt](https://drive.google.com/file/d/1Zq2XrXUQfKBYeRINfZ-_LuxuB5Z-iXdF/view?usp=drive_link) or trained *pt file by yourself.)
-> python test.py --path /root/test  --size 256 --psp_checkpoint_path ./pre-train/psp_ffhq_encode.pt --ckpt ./checkpoint/EXE_GAN_model.pt
---mask_root ./dataset/mask/testing_mask_dataset
---mask_file_root ./dataset/mask
---mask_type test_6.txt
-
-```
-- mask_root Irregular masks root
-- mask_file_root file name list file folder
-- mask_type could be ["center", "test_2.txt", "test_3.txt", "test_4.txt", "test_5.txt", "test_6.txt", "all"]
-- size 256 for 256X256 images and  512 for  512X512 images
-```
-- If you don't have irregular masks, just using center masks is also fine.
-> python test.py --path /root/test  --size 256 --psp_checkpoint_path ./pre-train/psp_ffhq_encode.pt --ckpt ./checkpoint/EXE_GAN_model.pt
---mask_type center
-
 
 
 ## Exemplar-guided facial image recovery => This is used together with [VR HEADSET FILTER](https://github.com/mana-byte/VR-Headset-filter)
