@@ -18,7 +18,7 @@ approach can not only preserve the quality of the input facial image but also co
 
 **NOTE**: This repo only uses a slightly modified version of the guided recovery. If you want all the other feature please checkout the original repo
 
-[![Watch the video](https://raw.githubusercontent.com/mana-byte/EXE-GAN-NIX/main/assets/example_result/Talking_example/recover_out/1_0_inpaint.png)](https://raw.githubusercontent.com/mana-byte/EXE-GAN-NIX/main/assets/output.mp4)
+[![Watch the video](https://raw.githubusercontent.com/mana-byte/EXE-GAN-NIX/main/example_result/Talking_example/recover_out/1_0_inpaint.png)](https://raw.githubusercontent.com/mana-byte/EXE-GAN-NIX/main/output.mp4)
 
 ## Notice
 Our paper has been published in a Neurocomputing Journal!!!  (28 Nov. 2024). 
